@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { CardStatus } from '../components/CardStatus'
 import { PanelControl } from '../components/PanelControl'
+import { Header } from '../components/Header'
 
 function App() {
   const [data, setData] = useState(null)
@@ -28,10 +29,9 @@ function App() {
 
   return (
     <>
+      <Header/>
       <div
         style={{
-          margin: 0,
-          height: "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

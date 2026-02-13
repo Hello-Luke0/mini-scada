@@ -6,7 +6,7 @@ export const CardStatus = ({title, value}) => {
     style={{
         border: "1px solid #ccc",
         padding: 16,
-        width: 180,
+        width: 200,
         borderRadius: 8,
         textAlign: "center",
         margin: 18
