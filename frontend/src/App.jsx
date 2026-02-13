@@ -28,40 +28,59 @@ function App() {
 
   return (
     <>
-    <div>
-      <CardStatus
-        title="Temperatura (° C)"
-        value={data.temperature.toFixed(2)}
-      />
+      <div
+        style={{
+          margin: 0,
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden"
+        }}
+      >
 
-      <CardStatus
-        title="RPM"
-        value={data.rpm.toFixed(2)}
-      />
+        <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          justifyItems: "center"
+        }}
+        >
+          <CardStatus
+            title="Temperatura (° C)"
+            value={data.temperature.toFixed(2)}
+          />
+
+          <CardStatus
+            title="RPM"
+            value={data.rpm.toFixed(2)}
+          />
 
 
-      <CardStatus 
-        title="Nível do tank"
-        value={data.levelTank.toFixed(2)}
-      />
-    </div>
-      
-    <div>
-      <PanelControl
-          status={data.status}
-          alarm={data.alarm.toString()}
-          onStart={ () => {
-            axios.post(`${API}/start`).then(fetchState)
-          }}
-          onStop={() => {
-            axios.post(`${API}/stop`).then(fetchState)
-          }}
-          onAlarmReset={() => {
-            axios.post(`${API}/alarm-reset`).then(fetchState)
-          }}
-      />
-    </div>
-           
+          <CardStatus 
+            title="Nível do tank"
+            value={data.levelTank.toFixed(2)}
+          />
+        </div>
+          
+        <div>
+          <PanelControl
+              status={data.status}
+              alarm={data.alarm.toString()}
+              onStart={ () => {
+                axios.post(`${API}/start`).then(fetchState)
+              }}
+              onStop={() => {
+                axios.post(`${API}/stop`).then(fetchState)
+              }}
+              onAlarmReset={() => {
+                axios.post(`${API}/alarm-reset`).then(fetchState)
+              }}
+          />
+        </div>
+
+      </div>
     </>
   )
 }
