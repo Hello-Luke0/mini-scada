@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { CardStatus } from '../components/CardStatus'
+import { PanelControl } from '../components/PanelControl'
 
 function App() {
   const [data, setData] = useState(null)
@@ -27,31 +28,40 @@ function App() {
 
   return (
     <>
+    <div>
       <CardStatus
         title="Temperatura (° C)"
-        value={data.temperature}
+        value={data.temperature.toFixed(2)}
       />
 
       <CardStatus
         title="RPM"
-        value={data.rpm}
+        value={data.rpm.toFixed(2)}
       />
 
-      <CardStatus 
-        title="Status"
-        value={data.status.toString()}
-      />
 
       <CardStatus 
         title="Nível do tank"
-        value={data.levelTank}
+        value={data.levelTank.toFixed(2)}
       />
-     
-     <CardStatus 
-        title="Alarme"
-        value={data.alarm.toString()}
+    </div>
+      
+    <div>
+      <PanelControl
+          status={data.status}
+          alarm={data.alarm.toString()}
+          onStart={ () => {
+            axios.post(`${API}/start`).then(fetchState)
+          }}
+          onStop={() => {
+            axios.post(`${API}/stop`).then(fetchState)
+          }}
+          onAlarmReset={() => {
+            axios.post(`${API}/alarm-reset`).then(fetchState)
+          }}
       />
-        
+    </div>
+           
     </>
   )
 }

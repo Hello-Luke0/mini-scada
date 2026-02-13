@@ -10,7 +10,7 @@ app.use(cors())
 let stateMachine = {
     temperature: 25,
     rpm: 1000,
-    status: "RUNNING" || "STOPPED",
+    status: "STOPPED",
     levelTank: 70,
     alarm: false 
 }
